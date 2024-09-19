@@ -13,7 +13,7 @@ typedef struct {
 
 typedef struct {
 	const char* name;
-	HBRUSH backGround;
+	//HBRUSH backGround;
 
 	size_t memory;
 	size_t entitySize;

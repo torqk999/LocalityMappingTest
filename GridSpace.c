@@ -2,7 +2,7 @@
 
 GridSpace GridSpace_ctor(
 	const char* name,
-	HBRUSH backGround,
+	//HBRUSH backGround,
 	int dimCount,
 	int* dimCellCounts,
 	int maxEntityCount,
@@ -12,7 +12,7 @@ GridSpace GridSpace_ctor(
 	GridSpace newGrid = { 0 };
 
 	newGrid.name = name;
-	newGrid.backGround = backGround;
+	//newGrid.backGround = backGround;
 
 	newGrid.dimCount = dimCount;
 	newGrid.cellSize = cellSize;
@@ -61,7 +61,7 @@ void GridSpace_initializeMemory(GridSpace* gridSpace) {
 
 void GridSpace_dtor(GridSpace* gridSpace) {
 	free(gridSpace->memory);
-	DeleteObject(gridSpace->backGround);
+	//DeleteObject(gridSpace->backGround);
 	gridSpace->memory = NULL;
 	gridSpace->meta = NULL;
 	gridSpace->dimCellCounts = NULL;

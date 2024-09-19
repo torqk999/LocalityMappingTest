@@ -135,7 +135,7 @@
     <ClCompile Include="Entity.c" />
     <ClCompile Include="GridSpace.c" />
     <ClCompile Include="GridSpaceRender.c" />
-    <ClCompile Include="LocalityMappingTest.c" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="Render.c" />
     <ClCompile Include="Render.h" />
     <ClCompile Include="Utils.c" />

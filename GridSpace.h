@@ -10,7 +10,7 @@ void GridSpace_initializeMemory(GridSpace* gridSpace);
 
 GridSpace GridSpace_ctor(
 	char* name,
-	HBRUSH backGround,
+	//HBRUSH backGround,
 	int dimCount,
 	int* dimCellCounts,
 	int maxEntityCount,
