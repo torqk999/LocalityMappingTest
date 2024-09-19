@@ -2,6 +2,13 @@
 #include "Windows.h"
 
 typedef struct {
+	int counter;
+	int procRate;
+	void(**debugCall)(void* arg);
+	void** args;
+} Debugger;
+
+typedef struct {
 	RECT rect;
 	HBRUSH brush;
 } SolidColorRect;
@@ -30,7 +37,9 @@ typedef struct {
 	int totalCellCount;
 	float cellSize;
 
-	
+	// debug container
+	int _collisionCheckCount;
+	int _collisionCheckCycleMax;
 } GridSpace;
 
 typedef enum {
@@ -50,7 +59,7 @@ typedef struct {
 typedef struct {
 	char*		name;
 	GridSpace*	hostGrid;
-	//int*		nextId;
+	//void	 (**behaviours)(void** args);
 
 	HBRUSH		color;
 	Association association;
@@ -58,7 +67,6 @@ typedef struct {
 	int			collisionMask,
 				checkRange;
 				
-
 	float		collisionDmg,
 				maxHealth,
 				maxSpeed,

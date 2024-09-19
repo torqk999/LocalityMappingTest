@@ -1,96 +1,39 @@
-﻿  GridSpace.c
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(52,25): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+﻿  main.c
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(59,25): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(53,24): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(60,24): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(54,26): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(61,26): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(55,26): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(62,26): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(49,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(56,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(50,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(57,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(51,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(58,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(60,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(67,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(69,40): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(76,40): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(70,39): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(77,39): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(71,41): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(78,41): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(72,42): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'GridSpace.c')
+C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(79,42): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  (compiling source file 'main.c')
   
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(4,14): warning C4028: formal parameter 1 different from declaration
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(18,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(36,15): warning C4047: '=': 'Cell *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(38,24): warning C4047: '=': 'int *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(39,25): warning C4047: '=': 'int *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(32,9): warning C4047: 'initializing': 'size_t' differs in levels of indirection from 'void *'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(59,23): warning C4022: 'InitMemory': pointer mismatch for actual parameter 1
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(63,16): warning C4022: 'free': pointer mismatch for actual parameter 1
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(65,20): warning C4047: '=': 'size_t' differs in levels of indirection from 'void *'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(79,8): warning C4047: 'initializing': 'void *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(80,8): warning C4047: 'initializing': 'void *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(163,9): warning C4047: 'initializing': 'float *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(164,19): warning C4133: 'initializing': incompatible types - from 'float *' to 'BasicEntityData *'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(228,2): warning C4047: 'return': 'Entity *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(233,9): warning C4047: 'initializing': 'float *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(370,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(371,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(391,41): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.c(392,41): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  LocalityMappingTest.c
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(52,25): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(53,24): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(54,26): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(55,26): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(49,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(50,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(51,22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(60,19): warning C4047: 'initializing': 'BasicEntityData *' differs in levels of indirection from 'size_t'
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(69,40): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(70,39): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(71,41): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\GridSpace.h(72,42): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  (compiling source file 'LocalityMappingTest.c')
-  
-C:\Users\soulb\source\repos\LocalityMappingTest\LocalityMappingTest.c(41,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+C:\Users\soulb\source\repos\LocalityMappingTest\main.c(124,11): warning C4047: 'initializing': 'void (__cdecl **)(void *)' differs in levels of indirection from 'void **'
   LocalityMappingTest.vcxproj -> C:\Users\soulb\source\repos\LocalityMappingTest\x64\Debug\LocalityMappingTest.exe

@@ -1,16 +1,19 @@
 #pragma once
 
+#include "malloc.h"
 #include "time.h"
 #include "stdio.h"
 
+
 #include "Entity.h"
 #include "Utils.h"
+
+void GridSpace_init();
 
 void GridSpace_initializeMemory(GridSpace* gridSpace);
 
 GridSpace GridSpace_ctor(
 	char* name,
-	//HBRUSH backGround,
 	int dimCount,
 	int* dimCellCounts,
 	int maxEntityCount,
@@ -22,6 +25,10 @@ void GridSpace_dtor(GridSpace* gridSpace);
 void GridSpace_swapEntities(GridSpace* gridSpace, int indexA, int indexB);
 
 void GridSpace_randomPopulate(GridPortfolio* portfolio, int entityCount);
+
+inline void GridSpace_randomFill(GridPortfolio* portfolio) {
+	GridSpace_randomPopulate(portfolio, portfolio->infoLib->hostGrid->maxEntityCount);
+}
 
 void GridSpace_randomSpawn(GridPortfolio* portfolio);
 
@@ -74,4 +81,9 @@ inline void GridSpace_getSolidRectFromCell(GridSpace* gridSpace, SolidColorRect*
 
 inline void GridSpace_updateCellIndexOfEntity(Entity* entity) {
 	entity->cellIndex = GridSpace_getCellIndexOfEntity(entity);
+}
+
+inline void GridSpace_printCollisionCheckCycleMax(GridSpace* gridSpace) {
+	printf("GridSpace [%s] collisionCheckCycleMax: %d\n",
+		gridSpace->name, gridSpace->_collisionCheckCycleMax);
 }

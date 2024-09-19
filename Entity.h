@@ -27,4 +27,8 @@ inline void Entity_setActive(Entity* entity, int state) {
 	entity->flags |= (state > 0 ? 0x1 : 0x0 << ACTIVE);
 }
 
+inline void Entity_memLock(Entity* entity) {
+
+}
+
 void Entity_ctor(Entity* entity, Info* info, int uuid, size_t initSize, void* init);

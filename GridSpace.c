@@ -1,8 +1,9 @@
 #include "GridSpace.h"
 
+size_t clz = 0;
+
 GridSpace GridSpace_ctor(
 	const char* name,
-	//HBRUSH backGround,
 	int dimCount,
 	int* dimCellCounts,
 	int maxEntityCount,
@@ -12,14 +13,17 @@ GridSpace GridSpace_ctor(
 	GridSpace newGrid = { 0 };
 
 	newGrid.name = name;
-	//newGrid.backGround = backGround;
-
 	newGrid.dimCount = dimCount;
 	newGrid.cellSize = cellSize;
-	newGrid.entitySize = sizeof(Entity) + dataSize;
 	newGrid.maxEntityCount = maxEntityCount;
 	newGrid.entityCount = 0;
 
+	// bound entities to a cache line
+	size_t criticalEntitySize = sizeof(Entity) + dataSize;
+	newGrid.entitySize = 0;
+	while (newGrid.entitySize < criticalEntitySize)
+		newGrid.entitySize += clz;
+	
 	newGrid.totalCellCount = 1;
 	for (int i = dimCount - 1; i >= 0; i--)
 		newGrid.totalCellCount *= dimCellCounts[i];
@@ -29,7 +33,7 @@ GridSpace GridSpace_ctor(
 	size_t meta = sizeof(Cell) * newGrid.totalCellCount;
 	size_t dimCounters = sizeof(int) * dimCount;
 
-	size_t block = malloc(memory + meta + (dimCounters * 2));
+	size_t block = _aligned_malloc(memory + meta + (dimCounters * 2), clz);
 
 	newGrid.memory = block;
 	block += memory;
@@ -37,7 +41,6 @@ GridSpace GridSpace_ctor(
 	block += meta;
 	newGrid.dimCellCounts = block;
 	newGrid.dimCellWeights = ((size_t)newGrid.dimCellCounts) + (sizeof(int) * newGrid.dimCount);
-	//newGrid.dimCellAccumulators = newGrid.dimCellWeights + (sizeof(int) * newGrid.dimCount);
 
 	int weight = 1;
 	for (int i = dimCount - 1; i >= 0; i--) {
@@ -51,7 +54,29 @@ GridSpace GridSpace_ctor(
 	for (int i = 0; i < newGrid.totalCellCount; i++)
 		newGrid.meta[i] = (Cell){ 0,0 };
 
+	newGrid._collisionCheckCount = 0;
+	newGrid._collisionCheckCycleMax = 0;
+
 	return newGrid;
+}
+
+void GridSpace_init() {
+	srand(time(NULL));
+
+	SYSTEM_LOGICAL_PROCESSOR_INFORMATION buffer[256];
+	DWORD returnLength = sizeof(buffer);
+	if (!GetLogicalProcessorInformation(buffer, &returnLength)) {
+		perror("GetLogicalProcessorInformation");
+		return 1;
+	}
+
+	for (int i = 0; i < returnLength / sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION); i++) {
+		if (buffer[i].Relationship == RelationCache && buffer[i].Cache.Level == 1) {
+			clz = buffer[i].Cache.LineSize;
+			//printf("Cache line size: %d bytes\n", buffer[i].Cache.LineSize);
+			break;
+		}
+	}
 }
 
 void GridSpace_initializeMemory(GridSpace* gridSpace) {
@@ -126,6 +151,8 @@ void GridSpace_addEntity(Info* info, int uuid, BasicEntityData* init) {
 
 	info->hostGrid->meta[info->hostGrid->totalCellCount - 1].count++;	// Add to the last cell and let it resolve via the memory rolling
 	info->hostGrid->entityCount++;										// Add to the grid
+
+	//printf("Entity %d added\n", uuid);
 }
 
 void GridSpace_randomPopulate(GridPortfolio* portfolio, int entityCount) {
@@ -137,6 +164,8 @@ void GridSpace_randomPopulate(GridPortfolio* portfolio, int entityCount) {
 		GridSpace_addEntity(nextInfo, GridPortfolio_nextUUID(portfolio), &bed);
 	}
 }
+
+
 
 void GridSpace_randomSpawn(GridPortfolio* portfolio) {
 
@@ -169,7 +198,7 @@ void GridSpace_updateEntity(Entity* entity, GravityWell* gravityWell) {
 	if (data[HEALTH] <= 0) {
 		Entity_setActive(entity, 0);
 		entity->info->hostGrid->entityCount--;
-		printf("%s died...\n", entity->info->name);
+		//printf("%s died...\n", entity->info->name);
 		return;
 	}
 
@@ -199,13 +228,7 @@ void GridSpace_updateEntity(Entity* entity, GravityWell* gravityWell) {
 				data[i] = dimMax - 1;
 			data[i + deltas] *= -1;
 		}
-
-		// friction
-		//data[i + deltas] -= data[i + deltas] > entity->info->maxSpeed ? 1 : data[i + deltas] < -entity->info->maxSpeed ? -1 : 0;
-
 	}
-
-
 
 	// gravity & friction
 	if (gravityWell) {
@@ -221,7 +244,6 @@ void GridSpace_updateEntity(Entity* entity, GravityWell* gravityWell) {
 	}
 
 	GridSpace_updateCellIndexOfEntity(entity);
-
 }
 
 Entity* GridSpace_getEntityByIndex(GridSpace* gridSpace, int index) {
@@ -420,6 +442,7 @@ void GridSpace_updateInterGridCollisions(Entity* entity, int cellIndex) {
 	Cell* collidingCell = GridSpace_getCellByIndex(gridSpace, cellIndex);
 	for (int i = collidingCell->startIndex; i < collidingCell->count + collidingCell->startIndex; i++) {
 		Entity* other = GridSpace_getEntityByIndex(gridSpace, i);
+		gridSpace->_collisionCheckCount++;
 		if (GridSpace_checkEntityCollision(entity, other))
 			GridSpace_procEntityCollision(entity, other);
 	}
@@ -450,6 +473,7 @@ void GridSpace_updateEntityCollisions(GridSpace* gridSpace) {
 			Entity* a = GridSpace_getEntityByIndex(gridSpace, e);
 
 			for (int o = e + 1; o < gridSpace->meta[c].count + gridSpace->meta[c].startIndex; o++) {
+				gridSpace->_collisionCheckCount++;
 				Entity* b = GridSpace_getEntityByIndex(gridSpace, o);
 				if (GridSpace_checkEntityCollision(a, b))
 					GridSpace_procEntityCollision(a, b);
@@ -486,7 +510,9 @@ void GridSpace_testUpdate(
 	if (!gridSpace)
 		return;
 
+	gridSpace->_collisionCheckCount = 0;
 	portfolio->spawnTimer++;
+
 	if (portfolio->spawnTimer >= portfolio->spawnRate) {
 		GridSpace_randomSpawn(portfolio);
 		portfolio->spawnTimer = 0;
@@ -497,4 +523,8 @@ void GridSpace_testUpdate(
 	GridSpace_rollForward(gridSpace);
 	GridSpace_rollBackward(gridSpace);
 	GridSpace_updateEntityCollisions(gridSpace);
+
+	gridSpace->_collisionCheckCycleMax =
+		gridSpace->_collisionCheckCount > gridSpace->_collisionCheckCycleMax ?
+		gridSpace->_collisionCheckCount : gridSpace->_collisionCheckCycleMax;
 }

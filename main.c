@@ -34,7 +34,7 @@
 */
 
 
-#define ENT_CNT 2000
+#define ENT_CNT 16000
 
 typedef struct {
 	int count;
@@ -55,7 +55,7 @@ void BrushPalette_dtor(BrushPalette* brushPalette) {
 
 int main() {
 
-	srand(time(NULL));
+	GridSpace_init();
 
 	BrushPalette myPalette = { 3,
 		(HBRUSH[]) {
@@ -67,11 +67,10 @@ int main() {
 
 	GridSpace myGrid = GridSpace_ctor(
 		"My Test Grid",
-		//myPalette.colors[BCKGRND],
 		2,
-		(int[]) { 20, 20 },
+		(int[]) { 100, 100 },
 		ENT_CNT,
-		50,
+		5,
 		sizeof(BasicEntityData)
 	);
 
@@ -82,30 +81,32 @@ int main() {
 			{
 				"Bonom",
 				& myGrid,
-				//& nextId,
+				//NULL,
 
 				myPalette.colors[GREEN],
 				TEAM_A,
+
 				BONOM,
 				1,
+
 				1,
 				100,
-				3,
-				10
+				1,
+				5
 			},
 			{
 				"Broheem",
 				&myGrid,
-				//&nextId,
+				//NULL,
 
 				myPalette.colors[RED],
-				TEAM_B,
+				TEAM_A,
 				BONOM,
 				1,
 				2,
 				50,
-				6,
-				8
+				3,
+				4
 			}
 		},
 		2,
@@ -120,15 +121,28 @@ int main() {
 		}
 	};
 
+	Debugger myDebugger = {
+		0, 20,
+		(void* []) {
+			GridSpace_printCollisionCheckCycleMax,
+			NULL
+		},
+		(void* []) {
+			&myGrid
+		}
+	};
+
+	GridSpace_randomFill(&myPortfolio);
+
 	GridSpaceRender_init(&myGrid);
 
 	while(1){
 		GridSpace_testUpdate(&myGrid, &myPortfolio, &myWell);
+		UpdateDebugger(&myDebugger);
 		Sleep(1);
 	}
 
 	GridSpace_dtor(&myGrid);
 
 	BrushPalette_dtor(&myPalette);
-
 }
